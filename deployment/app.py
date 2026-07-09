@@ -4,33 +4,65 @@ from predict import predict
 
 def run_prediction(prompt, A, B, C, D, E):
 
+    if not prompt.strip():
+        return "Please enter a question."
+
     results = predict(prompt, A, B, C, D, E)
 
-    output = "Top 3 Predictions\n\n"
+    output = "# 🧠 Smart MCQ Solver Results\n\n"
 
-    for rank, (label, score) in enumerate(results, start=1):
-        output += f"{rank}. Option {label} (Score: {score:.4f})\n"
+    medals = ["🥇", "🥈", "🥉"]
+
+    for i, (label, option_text, score) in enumerate(results):
+
+        output += f"{medals[i]} **Rank {i+1}**\n\n"
+        output += f"**Option {label}**\n\n"
+        output += f"{option_text}\n\n"
+        output += f"Confidence Score: **{score:.4f}**\n\n"
+        output += "---\n\n"
 
     return output
 
 
-demo = gr.Interface(
-    fn=run_prediction,
+with gr.Blocks(title="Smart MCQ Solver") as demo:
 
-    inputs=[
-        gr.Textbox(lines=5, label="Question"),
-        gr.Textbox(label="Option A"),
-        gr.Textbox(label="Option B"),
-        gr.Textbox(label="Option C"),
-        gr.Textbox(label="Option D"),
-        gr.Textbox(label="Option E"),
-    ],
+    gr.Markdown(
+        """
+        # 🧠 Smart MCQ Solver
+        ### DeBERTa-v3-base Fine-tuned Multiple Choice Question Answering
+        Enter a question and five answer options. The model predicts the **Top-3** most likely answers.
+        """
+    )
 
-    outputs=gr.Textbox(label="Predicted Top 3 Answers"),
+    question = gr.Textbox(
+        lines=5,
+        label="Question"
+    )
 
-    title="Smart MCQ Solver",
-    description="DeBERTa-v3-base model fine-tuned for Top-3 MCQ Answer Prediction",
-)
+    optionA = gr.Textbox(label="Option A")
+    optionB = gr.Textbox(label="Option B")
+    optionC = gr.Textbox(label="Option C")
+    optionD = gr.Textbox(label="Option D")
+    optionE = gr.Textbox(label="Option E")
 
-if __name__ == "__main__":
-    demo.launch()
+    predict_button = gr.Button(
+        "🚀 Predict Top 3",
+        variant="primary"
+    )
+
+    output = gr.Markdown()
+
+    predict_button.click(
+        fn=run_prediction,
+        inputs=[
+            question,
+            optionA,
+            optionB,
+            optionC,
+            optionD,
+            optionE
+        ],
+        outputs=output
+    )
+
+demo.launch()

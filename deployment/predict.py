@@ -1,15 +1,20 @@
 import torch
 import torch.nn.functional as F
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
-from transformers import (
-    AutoTokenizer,
-    AutoModelForSequenceClassification
-)
-
+# ----------------------------------------------------
+# Hugging Face Model Repository
+# ----------------------------------------------------
 MODEL_NAME = "vvenkata/smart-mcq-solver-deberta-base"
 
+# ----------------------------------------------------
+# Device
+# ----------------------------------------------------
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+# ----------------------------------------------------
+# Load Tokenizer and Model (only once)
+# ----------------------------------------------------
 print("Loading tokenizer...")
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
 
@@ -22,6 +27,9 @@ model.eval()
 OPTION_LABELS = ["A", "B", "C", "D", "E"]
 
 
+# ----------------------------------------------------
+# Predict Function
+# ----------------------------------------------------
 def predict(prompt, A, B, C, D, E):
 
     options = [A, B, C, D, E]
@@ -32,30 +40,31 @@ def predict(prompt, A, B, C, D, E):
 
         for option in options:
 
-            inputs = tokenizer(
+            encoding = tokenizer(
                 prompt,
                 option,
+                max_length=512,
                 truncation=True,
-                padding=True,
+                padding="max_length",
                 return_tensors="pt"
             )
 
-            inputs = {
-                k: v.to(device)
-                for k, v in inputs.items()
+            encoding = {
+                key: value.to(device)
+                for key, value in encoding.items()
             }
 
-            outputs = model(**inputs)
+            outputs = model(**encoding)
 
-            probs = F.softmax(outputs.logits, dim=1)
+            probabilities = F.softmax(outputs.logits, dim=1)
 
-            positive_prob = probs[0][1].item()
+            positive_probability = probabilities[0][1].item()
 
-            scores.append(positive_prob)
+            scores.append(positive_probability)
 
     ranked = sorted(
-        zip(OPTION_LABELS, scores),
-        key=lambda x: x[1],
+        zip(OPTION_LABELS, options, scores),
+        key=lambda x: x[2],
         reverse=True
     )
 
