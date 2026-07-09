@@ -1,0 +1,7 @@
+# Hugging Face models
+models/deberta_v3_base-20260630T053754Z-3-001/
+models/deberta_v3_small-20260615T150759Z-3-001/
+
+# General large model files
+*.safetensors
+*.bin
