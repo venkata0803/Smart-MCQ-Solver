@@ -1,0 +1,61 @@
+<mxfile host="app.diagrams.net" agent="Smart-MCQ-Solver">
+  <diagram id="deberta-small" name="DeBERTa-v3-small">
+    <mxGraphModel dx="1278" dy="868" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1300" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="p" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="Prompt" vertex="1">
+          <mxGeometry height="40" width="140" x="180" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="o" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="Option" vertex="1">
+          <mxGeometry height="40" width="140" x="480" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="DeBERTa Tokenizer&#xa;Sentence-pair encoding · max_length = 256" vertex="1">
+          <mxGeometry height="50" width="340" x="230" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="ids" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="Input IDs + Attention Mask" vertex="1">
+          <mxGeometry height="40" width="340" x="230" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="emb" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="Embedding Layer&#xa;768-d + relative position embeddings" vertex="1">
+          <mxGeometry height="50" width="340" x="230" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="enc" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="Transformer Encoder&#xa;DeBERTa-v3-small&#xa;6 layers × hidden 768 · 12 heads · FFN 3072" vertex="1">
+          <mxGeometry height="65" width="340" x="230" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="pool" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="Context Pooler&#xa;Linear(768 → 768) + GELU" vertex="1">
+          <mxGeometry height="50" width="340" x="230" y="435" as="geometry" />
+        </mxCell>
+        <mxCell id="head" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="Classification Head&#xa;Dropout(0.1) · Linear(768 → 2)" vertex="1">
+          <mxGeometry height="50" width="340" x="230" y="515" as="geometry" />
+        </mxCell>
+        <mxCell id="sm" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#09555B;strokeColor=#BAC8D3;fontColor=#EEEEEE;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="Softmax → P(class = 1) → Top-3 Ranking" vertex="1">
+          <mxGeometry height="45" width="340" x="230" y="595" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="p" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#0B4D6A;endArrow=block;endFill=1;exitX=0.5;exitY=1;entryX=0.25;entryY=0;labelBackgroundColor=none;fontColor=default;" target="t">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="o" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#0B4D6A;endArrow=block;endFill=1;exitX=0.5;exitY=1;entryX=0.75;entryY=0;labelBackgroundColor=none;fontColor=default;" target="t">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="t" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#0B4D6A;endArrow=block;endFill=1;labelBackgroundColor=none;fontColor=default;" target="ids">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="ids" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#0B4D6A;endArrow=block;endFill=1;labelBackgroundColor=none;fontColor=default;" target="emb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="emb" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#0B4D6A;endArrow=block;endFill=1;labelBackgroundColor=none;fontColor=default;" target="enc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="enc" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#0B4D6A;endArrow=block;endFill=1;labelBackgroundColor=none;fontColor=default;" target="pool">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="pool" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#0B4D6A;endArrow=block;endFill=1;labelBackgroundColor=none;fontColor=default;" target="head">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="head" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#0B4D6A;endArrow=block;endFill=1;labelBackgroundColor=none;fontColor=default;" target="sm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

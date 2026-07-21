@@ -1,0 +1,43 @@
+<mxfile host="app.diagrams.net" agent="Smart-MCQ-Solver">
+  <diagram id="tfidf-lr" name="TF-IDF Logistic Regression">
+    <mxGraphModel dx="852" dy="578" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="a" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;fontFamily=Times New Roman;fontSize=12;align=center;verticalAlign=middle;labelBackgroundColor=none;" value="Question + Option&#xa;prompt + &quot; [SEP] &quot; + option" vertex="1">
+          <mxGeometry height="50" width="280" x="9" y="51" as="geometry" />
+        </mxCell>
+        <mxCell id="b" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="TF-IDF Vectorizer&#xa;Unigrams + Bigrams&#xa;max_features = 50,000" vertex="1">
+          <mxGeometry height="60" width="280" x="332" y="46" as="geometry" />
+        </mxCell>
+        <mxCell id="c" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="Sparse Feature Vector" vertex="1">
+          <mxGeometry height="40" width="280" x="332" y="146" as="geometry" />
+        </mxCell>
+        <mxCell id="d" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="Logistic Regression&#xa;Binary Classifier&#xa;class_weight = balanced" vertex="1">
+          <mxGeometry height="60" width="280" x="9" y="136" as="geometry" />
+        </mxCell>
+        <mxCell id="e" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="P(y = 1 | text)" vertex="1">
+          <mxGeometry height="40" width="280" x="9" y="231" as="geometry" />
+        </mxCell>
+        <mxCell id="f" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="Rank Options A–E → Top-3" vertex="1">
+          <mxGeometry height="40" width="280" x="332" y="231" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#A8201A;endArrow=block;endFill=1;labelBackgroundColor=none;fontColor=default;" target="b">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="b" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#A8201A;endArrow=block;endFill=1;labelBackgroundColor=none;fontColor=default;" target="c">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="c" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#A8201A;endArrow=block;endFill=1;labelBackgroundColor=none;fontColor=default;" target="d">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="d" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#A8201A;endArrow=block;endFill=1;labelBackgroundColor=none;fontColor=default;" target="e">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="e" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#A8201A;endArrow=block;endFill=1;labelBackgroundColor=none;fontColor=default;" target="f">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

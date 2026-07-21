@@ -2,19 +2,10 @@ import torch
 import torch.nn.functional as F
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
-# ----------------------------------------------------
-# Hugging Face Model Repository
-# ----------------------------------------------------
 MODEL_NAME = "vvenkata/smart-mcq-solver-deberta-base"
 
-# ----------------------------------------------------
-# Device
-# ----------------------------------------------------
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# ----------------------------------------------------
-# Load Tokenizer and Model (only once)
-# ----------------------------------------------------
 print("Loading tokenizer...")
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
 
@@ -26,14 +17,9 @@ model.eval()
 
 OPTION_LABELS = ["A", "B", "C", "D", "E"]
 
-
-# ----------------------------------------------------
-# Predict Function
-# ----------------------------------------------------
 def predict(prompt, A, B, C, D, E):
 
     options = [A, B, C, D, E]
-
     scores = []
 
     with torch.no_grad():
@@ -49,18 +35,13 @@ def predict(prompt, A, B, C, D, E):
                 return_tensors="pt"
             )
 
-            encoding = {
-                key: value.to(device)
-                for key, value in encoding.items()
-            }
+            encoding = {k: v.to(device) for k, v in encoding.items()}
 
             outputs = model(**encoding)
 
-            probabilities = F.softmax(outputs.logits, dim=1)
+            probability = F.softmax(outputs.logits, dim=1)[0][1].item()
 
-            positive_probability = probabilities[0][1].item()
-
-            scores.append(positive_probability)
+            scores.append(probability)
 
     ranked = sorted(
         zip(OPTION_LABELS, options, scores),

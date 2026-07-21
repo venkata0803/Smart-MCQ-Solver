@@ -1,0 +1,55 @@
+<mxfile host="app.diagrams.net" agent="Smart-MCQ-Solver">
+  <diagram id="mlp-scratch" name="MLP Scratch Model">
+    <mxGraphModel dx="929" dy="631" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="a" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="Question + Option&#xa;prompt + &quot; [SEP] &quot; + option" vertex="1">
+          <mxGeometry height="50" width="300" x="53" y="25" as="geometry" />
+        </mxCell>
+        <mxCell id="b" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="Frozen MiniLM Embedding&#xa;all-MiniLM-L6-v2 · 384-d" vertex="1">
+          <mxGeometry height="50" width="300" x="420" y="25" as="geometry" />
+        </mxCell>
+        <mxCell id="c" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="Linear (384 → 256)&#xa;BatchNorm1d(256) · ReLU · Dropout(0.3)" vertex="1">
+          <mxGeometry height="55" width="300" x="420" y="115" as="geometry" />
+        </mxCell>
+        <mxCell id="d" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="Linear (256 → 128)&#xa;BatchNorm1d(128) · ReLU · Dropout(0.3)" vertex="1">
+          <mxGeometry height="55" width="300" x="53" y="115" as="geometry" />
+        </mxCell>
+        <mxCell id="e" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="Linear (128 → 64) · ReLU" vertex="1">
+          <mxGeometry height="40" width="300" x="53" y="211" as="geometry" />
+        </mxCell>
+        <mxCell id="f" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="Output Linear (64 → 1)" vertex="1">
+          <mxGeometry height="40" width="300" x="420" y="211" as="geometry" />
+        </mxCell>
+        <mxCell id="g" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="Sigmoid" vertex="1">
+          <mxGeometry height="35" width="300" x="420" y="297" as="geometry" />
+        </mxCell>
+        <mxCell id="h" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="Binary Score → Top-3 Ranking" vertex="1">
+          <mxGeometry height="40" width="300" x="53" y="294.5" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#23445D;endArrow=block;endFill=1;labelBackgroundColor=none;fontColor=default;" target="b">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="b" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#23445D;endArrow=block;endFill=1;labelBackgroundColor=none;fontColor=default;" target="c">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="c" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#23445D;endArrow=block;endFill=1;labelBackgroundColor=none;fontColor=default;" target="d">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="d" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#23445D;endArrow=block;endFill=1;labelBackgroundColor=none;fontColor=default;" target="e">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="e" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#23445D;endArrow=block;endFill=1;labelBackgroundColor=none;fontColor=default;" target="f">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="f" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#23445D;endArrow=block;endFill=1;labelBackgroundColor=none;fontColor=default;" target="g">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="g" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#23445D;endArrow=block;endFill=1;labelBackgroundColor=none;fontColor=default;" target="h">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,61 @@
+<mxfile host="app.diagrams.net" agent="Smart-MCQ-Solver">
+  <diagram id="deberta-base" name="DeBERTa-v3-base Final">
+    <mxGraphModel dx="973" dy="661" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="p" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#B2C9AB;strokeColor=#788AA3;fontColor=#46495D;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="Prompt" vertex="1">
+          <mxGeometry height="40" width="140" x="180" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="o" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#B2C9AB;strokeColor=#788AA3;fontColor=#46495D;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="Option" vertex="1">
+          <mxGeometry height="40" width="140" x="480" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#B2C9AB;strokeColor=#788AA3;fontColor=#46495D;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="DeBERTa Tokenizer&#xa;Sentence-pair encoding" vertex="1">
+          <mxGeometry height="50" width="340" x="230" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="ids" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#B2C9AB;strokeColor=#788AA3;fontColor=#46495D;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="Input IDs + Attention Mask" vertex="1">
+          <mxGeometry height="40" width="340" x="230" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="emb" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#B2C9AB;strokeColor=#788AA3;fontColor=#46495D;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="Embedding Layer (768-d)" vertex="1">
+          <mxGeometry height="40" width="340" x="230" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="enc" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#B2C9AB;strokeColor=#788AA3;fontColor=#46495D;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="Transformer Encoder&#xa;DeBERTa-v3-base (Final Model)&#xa;12 layers × hidden 768 · 12 heads · FFN 3072" vertex="1">
+          <mxGeometry height="70" width="340" x="230" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="head" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#B2C9AB;strokeColor=#788AA3;fontColor=#46495D;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="Classification Head&#xa;Context Pooler + Linear(768 → 2)" vertex="1">
+          <mxGeometry height="50" width="340" x="230" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="prob" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#B2C9AB;strokeColor=#788AA3;fontColor=#46495D;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="Softmax Probability P(class = 1)" vertex="1">
+          <mxGeometry height="40" width="340" x="230" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="rank" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#B2C9AB;strokeColor=#788AA3;fontColor=#46495D;fontFamily=Times New Roman;fontSize=12;align=center;labelBackgroundColor=none;" value="Rank Options A–E → Top-3 Prediction" vertex="1">
+          <mxGeometry height="45" width="340" x="230" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="p" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#788AA3;endArrow=block;endFill=1;exitX=0.5;exitY=1;entryX=0.25;entryY=0;labelBackgroundColor=none;fontColor=default;" target="t">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="o" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#788AA3;endArrow=block;endFill=1;exitX=0.5;exitY=1;entryX=0.75;entryY=0;labelBackgroundColor=none;fontColor=default;" target="t">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="t" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#788AA3;endArrow=block;endFill=1;labelBackgroundColor=none;fontColor=default;" target="ids">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="ids" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#788AA3;endArrow=block;endFill=1;labelBackgroundColor=none;fontColor=default;" target="emb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="emb" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#788AA3;endArrow=block;endFill=1;labelBackgroundColor=none;fontColor=default;" target="enc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="enc" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#788AA3;endArrow=block;endFill=1;labelBackgroundColor=none;fontColor=default;" target="head">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="head" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#788AA3;endArrow=block;endFill=1;labelBackgroundColor=none;fontColor=default;" target="prob">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="prob" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#788AA3;endArrow=block;endFill=1;labelBackgroundColor=none;fontColor=default;" target="rank">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
